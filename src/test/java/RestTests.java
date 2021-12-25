@@ -1,6 +1,8 @@
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.BeforeAll;
 import org.testng.annotations.Test;
 import pojos.*;
+import services.RestWrapper;
 import steps.UserSteps;
 import java.util.List;
 import static io.restassured.RestAssured.given;
@@ -9,6 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestTests {
 
+    private static RestWrapper api;
+
+    @BeforeAll
+    public static void prepareClient(){
+        api = RestWrapper.loginAs("admin1290@admin.com", "111");
+    }
+
+
     @Test
     public void getCocktails() {
         List<CocktailsPojo> cocktails = UserSteps.getCocktails();
@@ -16,20 +26,6 @@ public class RestTests {
     }
 
 
-    public void dealAuth(){
-        AuthPojoRequest au = AuthPojoRequest.builder()
-                        .email("admin1290@admin.com")
-                        .password("111")
-                        .build();
 
-        given()
-                .baseUri("http://109.195.203.123:48880/")
-                .basePath("/cocktails")
-                .contentType(ContentType.JSON)
-                .body(au)
-                .when().post()
-                .then().extract().as(AuthResponse.class);
-
-    }
 
 }

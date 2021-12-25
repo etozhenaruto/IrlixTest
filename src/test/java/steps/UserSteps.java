@@ -13,7 +13,7 @@ public class UserSteps {
 
     private static final RequestSpecification REQ_SPEC =
             new RequestSpecBuilder()
-                    .setBaseUri("http://109.195.203.123:48880/")
+                    .setBaseUri("http://109.195.203.123:48880")
                     .setBasePath("/cocktails")
                     .setContentType(ContentType.JSON)
                     .build();

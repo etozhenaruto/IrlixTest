@@ -8,11 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Builder //что бы не писать сетторы и гетторы
-@NoArgsConstructor
 @AllArgsConstructor
-public class AuthPojoRequest {
+public class UserLoginPojo {
     private String password;
     private String email;
 }
